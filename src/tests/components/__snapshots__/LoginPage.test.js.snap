@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should correctly render LoginPage 1`] = `
+<div
+  className="box-layout"
+>
+  <nav
+    className="nav__login"
+  >
+    <div
+      className="nav__login__header"
+    >
+      <Link
+        className="nav__login__link"
+        replace={false}
+        to="#"
+      >
+        Blogist
+      </Link>
+      <button
+        className="button button--link"
+      >
+        Login
+      </button>
+    </div>
+  </nav>
+</div>
+`;

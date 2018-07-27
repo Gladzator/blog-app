@@ -1,0 +1,27 @@
+.nav__login {
+  background: lighten($dark-grey, 10%);
+  width: 100vw;
+  height: 9rem;
+  padding: 0 1rem;
+  display: block;
+}
+
+.nav__login__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: $s-size 0;
+  h1 {
+    margin: 0;
+  }
+  button {
+    font-size: 3rem;
+  }
+}
+
+.nav__login__link {
+  color: white;
+  text-decoration: none;
+  font-size: 5rem;
+  font-weight: 300;
+}
