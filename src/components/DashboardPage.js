@@ -1,12 +1,15 @@
 import React from 'react';
-import PageSubHeader from './PageSubHeader';
 import BlogView from './BlogView';
+import NameModal from './NameModal';
+import PageSubHeader from './PageSubHeader';
 
 const DashboardPage = () => (
   <div>
+    <NameModal />
     <PageSubHeader />
     <BlogView />
   </div>
+
 );
 
 export default DashboardPage;

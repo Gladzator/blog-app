@@ -10,7 +10,6 @@ class PostListItem extends React.Component {
       content: props.content,
       likes: props.likes,
     };
-    let like_image='not_liked';
   };
 
   render() {
@@ -20,11 +19,11 @@ class PostListItem extends React.Component {
             <h3 className="list-item__title">{this.state.title}</h3>
             <div className="list-item__likes">
             {
-              this.like_image==='not_liked'
+                this.state.likes===1
               ?
-              <img onClick={this.onLikeChange} src="./images/liked.png"></img>
+              <img src="./images/liked.png"></img>
               :
-              <img onClick={this.onLikeChange} src="./images/not_liked.png"></img>
+              <img src="./images/not_liked.png"></img>
             }
               <p>{this.state.likes}</p>
             </div>
@@ -36,21 +35,6 @@ class PostListItem extends React.Component {
     );
   }
 
-  onLikeChange = () => {
-    console.log('hi');
-    if(this.state.likes === 0) {
-      this.like_image= "not_liked"
-      console.log(this.like_image);
-      const likes = this.state.likes + 1;
-      this.setState(() => ({ likes }))
-    }
-    if(this.state.likes === 1) {
-      this.like_image= "liked"
-      console.log(this.like_image);
-      const likes = 0;
-      this.setState(() => ({ likes }))
-    }
-  }
 };
 
 export default PostListItem;

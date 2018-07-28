@@ -33,7 +33,6 @@ export const startSetPost = () => {
   return (dispatch) => {
     return database.ref(`users`).once('value').then((snapshot) => {
       const posts = [];
-      console.log(snapshot.val())
       snapshot.forEach((childSnapshot) => {
         childSnapshot.forEach((childSnapshot2) => {
           childSnapshot2.forEach((childSnapshot3) => {
@@ -49,3 +48,18 @@ export const startSetPost = () => {
     });
   };
 };
+
+export const editPost = (id, updates) => ({
+  type: 'EDIT_POST',
+  id,
+  updates
+});
+
+export const startEditPost = ( id, updates ) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/posts/${id}`).update(updates).then(() => {
+      dispatch(editPost( id, updates ));
+    });
+  };
+}

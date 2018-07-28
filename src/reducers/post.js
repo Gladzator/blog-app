@@ -8,6 +8,17 @@ export default (state = postDefaultState, action) => {
         action.posts
       ];
     case 'SET_POST': return action.posts;
+    case 'EDIT_POST' :
+      return state.map((post) => {
+        if(post.id === action.id) {
+          return {
+            ...post,
+            ...action.updates
+          }
+        } else {
+          return post;
+        }
+      })
     default:
       return state;
   }
