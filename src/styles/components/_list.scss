@@ -40,7 +40,8 @@ a:link{
 
 .list-item__likes {
   img {
-    padding-top: $s-size;
+    cursor: pointer;
+    padding-top: $m-size;
     padding-right: 0.5rem;
     float: left;
   }

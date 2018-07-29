@@ -7,19 +7,28 @@ export const addPost = (post) => ({
 
 export const startAddPost = (postData = {}) => {
   return (dispatch, getState) => {
+    console.log('hi')
     const uid = getState().auth.uid;
     const {
+      uiid = '',
       title = '',
       content = '',
       likes = 0
     } = postData;
-    const post = { title, content , likes};
+    let post = { uid, title, content , likes};
 
     return database.ref(`users/${uid}/posts`).push(post).then((ref) => {
+
+      console.log(ref.key)
+      post = {
+        uid,
+        ...post
+      };
       dispatch(addPost({
         id: ref.key,
         ...post
       }));
+      console.log(post);
     });
   };
 };
@@ -36,11 +45,14 @@ export const startSetPost = () => {
       snapshot.forEach((childSnapshot) => {
         childSnapshot.forEach((childSnapshot2) => {
           childSnapshot2.forEach((childSnapshot3) => {
-            posts.push({
-              uid: childSnapshot.key,
-              id: childSnapshot3.key,
-              ...childSnapshot3.val()
-          });
+            if(childSnapshot2.key === 'posts') {
+              posts.push({
+                uid: childSnapshot.key,
+                id: childSnapshot3.key,
+                ...childSnapshot3.val()
+            });
+            }
+
         });
       });
       });
@@ -55,9 +67,9 @@ export const editPost = (id, updates) => ({
   updates
 });
 
-export const startEditPost = ( id, updates ) => {
+export const startEditPost = ( uid, id, updates ) => {
+  console.log(uid);
   return (dispatch, getState) => {
-    const uid = getState().auth.uid;
     return database.ref(`users/${uid}/posts/${id}`).update(updates).then(() => {
       dispatch(editPost( id, updates ));
     });

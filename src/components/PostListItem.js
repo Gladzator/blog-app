@@ -19,7 +19,7 @@ class PostListItem extends React.Component {
             <h3 className="list-item__title">{this.state.title}</h3>
             <div className="list-item__likes">
             {
-                this.state.likes===1
+                this.state.likes !== 0
               ?
               <img src="./images/liked.png"></img>
               :

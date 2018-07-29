@@ -10,10 +10,10 @@ export class NewPostPage extends React.Component {
   constructor(props) {
     super(props);
     console.log(props)
-    console.log(this.props.posts[this.props.posts.length -1 ].uid)
   }
   onSubmit = (post) => {
     this.props.startAddPost(post);
+    this.props.history.push('/')
   };
 
   render() {

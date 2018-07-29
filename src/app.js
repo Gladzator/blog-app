@@ -5,6 +5,7 @@ import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetPost } from './actions/post';
 import { startSetDetails } from './actions/detail';
+import { startSetLikeKey } from './actions/like';
 import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
@@ -19,7 +20,7 @@ const jsx = (
   </Provider>
 );
 let hasRendered = false;
-const renderApp = () => {
+export const renderApp = () => {
   if (!hasRendered) {
     ReactDOM.render(jsx, document.getElementById('app'));
     hasRendered = true;
@@ -38,6 +39,12 @@ firebase.auth().onAuthStateChanged((user) => {
         history.push('/dashboard');
       }
     });
+    store.dispatch(startSetLikeKey()).then(() => {
+    renderApp();
+    if (history.location.pathname === '/') {
+      history.push('/dashboard');
+    }
+  });
       store.dispatch(startSetPost()).then(() => {
       renderApp();
       if (history.location.pathname === '/') {
