@@ -15,7 +15,7 @@ export const startAddDetail = (detailData = {}) => {
     return database.ref(`users/${uid}/details`).push(detail).then((ref) => {
       dispatch(addDetail({
         id: ref.key,
-        ...detail
+        name: detail.name
       }));
     });
   };
@@ -37,7 +37,7 @@ export const startSetDetails = () => {
           if(childSnapshot2.key==='name') {
             details.push({
               id: childSnapshot2.key,
-              ...childSnapshot2.val()
+              name:childSnapshot2.val()
             })
           }
         });

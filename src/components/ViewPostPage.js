@@ -86,7 +86,7 @@ export class ViewPostPage extends React.Component {
 
         }
       } else {
-        if(this.state.likes === 0) {
+        if(this.state.like === 0) {
           const likes = this.props.posts.likes + 1;
           this.state.like = 1;
           this.setState(() => ({ likes }))

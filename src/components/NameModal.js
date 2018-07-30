@@ -10,6 +10,7 @@ import database from '../firebase/firebase';
 class NameModal extends React.Component {
     constructor(props) {
       super(props);
+      console.log(props)
       this.state = {
         selectedOption: undefined,
         name: props.details.name ? props.details.name : '',
@@ -43,6 +44,8 @@ class NameModal extends React.Component {
         onRequestClose={this.closeModal}
         contentLabel="Enter your name"
         className="modal"
+        shouldCloseOnOverlayClick={false}
+        shouldCloseOnEsc={false}
       >
         <h3 className="modal__title">Enter your name</h3>
         <form>

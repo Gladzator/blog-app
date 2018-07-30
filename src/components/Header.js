@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
-
+import DetailsDropDown from './DetailsDropDown';
 
 export const Header = ({ startLogout }) => (
   <header className="header">
@@ -16,6 +16,7 @@ export const Header = ({ startLogout }) => (
           onClick={startLogout}
         >
           Logout</button>
+          <DetailsDropDown />
       </div>
     </div>
   </header>
