@@ -7,7 +7,6 @@ import PageSubHeader from './PageSubHeader';
 class DashboardPage extends React.Component    {
   constructor(props) {
     super(props);
-    console.log(props.details )
   }
   render() {
     return(

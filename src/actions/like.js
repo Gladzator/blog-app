@@ -7,7 +7,6 @@ export const addLike = (like) => ({
 
 export const startAddLike = (likeData = {}) => {
   return (dispatch, getState) => {
-    console.log('hi')
     const uid = getState().auth.uid;
     const {
       likeid = '',

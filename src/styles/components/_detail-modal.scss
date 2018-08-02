@@ -1,27 +1,32 @@
-.content-container {
-  margin: 0 auto;
-}
 .detail_modal{
-
-  max-width: 100vw;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.25);
   display: flex;
-  position:fixed;top: 0px; left: 0px; right: 0px; bottom: 0px;
-  background-color: rgba(255, 255, 255, 0.75);
+  position:absolute;top: 8rem; left: 0rem; right: 0rem; bottom: 0rem;
   justify-content: flex-end;
   transition: opacity 200ms ease-in-out;
 }
 
-.modal {
-  background: $dark-blue;
-  color: white;
-  max-width: 30rem;
-  padding: $l-size;
-  text-align: center;
+.dropdownModal {
+  margin:0 auto;
+  display: block;
+
 }
 
-.modal__title {
-  background: $dark-blue;
+.modal {
+  background: white;
+  color: $dark-blue;
+  max-width: 30rem;
+  text-align: center;
+  @media (min-width: 65rem) {
+    position: relative;
+    bottom: 22rem;
+    right: 26rem;
+  }
+}
+
+.drop_modal__title {
+
 }
 
 .modal__body {

@@ -2,7 +2,6 @@ const postDefaultState = [];
 
 export default (state = postDefaultState, action) => {
 
-    console.log(action.type);
   switch (action.type) {
     case 'ADD_LIKE':
       return [

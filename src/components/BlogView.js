@@ -6,9 +6,7 @@ import selectPosts from '../selectors/posts';
 export class BlogView extends React.Component {
   constructor(props) {
     super(props);
-
-    console.log(props.posts)
-  }
+}
 
    render () {
      return (
@@ -33,7 +31,7 @@ export class BlogView extends React.Component {
 
 const mapStatetoProps = (state) => {
   return {
-    posts: selectPosts(state.post)
+    posts: selectPosts(state.post, state.filters)
   };
 };
 export default connect(mapStatetoProps)(BlogView);

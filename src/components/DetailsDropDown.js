@@ -4,18 +4,18 @@ import DetailsDropDownModal from './DetailsDropDownModal';
 class DetailsDropDown extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      listVisible: false,
-      selectedOption: undefined
-    }
+  }
+  state = {
+    listVisible: false,
+    selectedOption: undefined
   }
   closeModal = () => {
-        this.setState(() => ({
-          selectedOption: '321'
-       }));
-       console.log(this.state.selectedOption)
-   };
-  render() {
+          this.setState(() => ({
+            listVisible: false,
+            selectedOption: undefined
+         }));
+     };
+      render() {
       return (
         <div>
           <img onClick={this.drop_down_img_click} src="/images/user.png"></img>
@@ -23,7 +23,7 @@ class DetailsDropDown extends React.Component {
             this.state.listVisible === true
             &&
             <div>
-              <div>
+              <div className="dropdownModal">
                 <DetailsDropDownModal
                   selectedOption={this.state.selectedOption}
                   closeModal={this.closeModal}
@@ -36,7 +36,8 @@ class DetailsDropDown extends React.Component {
     }
     drop_down_img_click = () => {
         this.setState (() => ({
-          listVisible: this.state.listVisible === false ? true : false
+          listVisible: this.state.listVisible === false ? true : false,
+          selectedOption:'123'
         }));
     }
   }
