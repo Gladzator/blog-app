@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { startSetDetails } from '../actions/detail';
 import selectDetails from '../selectors/detail';
-import { startAddDetail } from '../actions/detail';
+import { startAddDetail } from '../actions/detail';  //startAddFile
 import database from '../firebase/firebase';
-
+import FileField from './FileField';
 
 class NameModal extends React.Component {
     constructor(props) {
@@ -14,6 +14,7 @@ class NameModal extends React.Component {
       this.state = {
         selectedOption: undefined,
         name: props.details.name ? props.details.name : '',
+        // pictureUrl: null
       }
       let uname;
 
@@ -30,12 +31,25 @@ class NameModal extends React.Component {
       e.preventDefault();
 
       if(this.uname !=='') {
-        let name=this.uname
-        this.props.startAddDetail({name: name})
+        let name=this.uname;
+        this.props.startAddDetail({name: name});
+        // this.props.startAddFile({picture: this.state.picture})
         this.setState(() => ({ selectedOption: undefined, name: name }));
       }
 
     }
+    // displayPicture(event) {
+    //   let reader = new FileReader();
+    //   let file = event.target.files[0];
+    //   reader.onloadend = () => {
+    //     this.setState({
+    //       picture: file,
+    //       pictureUrl: reader.result
+    //     })
+    //     const pictureUrl = this.state.pictureUrl
+    //   };
+    //   reader.readAsDataURL(file);
+    // }
     render (){
     return(
       <div>
@@ -43,7 +57,7 @@ class NameModal extends React.Component {
         isOpen={( this.props.details.length === 0 )}
         onRequestClose={this.closeModal}
         contentLabel="Enter your name"
-        className="modal"
+        className="modal_name"
         shouldCloseOnOverlayClick={false}
         shouldCloseOnEsc={false}
       >
@@ -57,6 +71,12 @@ class NameModal extends React.Component {
               value={this.state.name}
               onChange={this.onNameChange}
             />
+            {/* <input
+              type="file"
+              onChange={(event) => {
+                this.displayPicture(event);
+              }}
+            /> */}
             <button className="modalButton" onClick={this.closeModal}>Confirm</button>
         </form>
     </Modal>
@@ -66,7 +86,8 @@ class NameModal extends React.Component {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  startAddDetail: (detail) => dispatch(startAddDetail(detail))
+  startAddDetail: (detail) => dispatch(startAddDetail(detail)),
+  // startAddFile: (file) => dispatch(startAddFile(file))
 });
 
 const mapStatetoProps = (state) => {

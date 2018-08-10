@@ -1,11 +1,11 @@
-.ReactModalPortal .ReactModal__Overlay  {
+.ReactModalPortal .ReactModal__Overlay {
   align-items: center;
   display: flex;
   justify-content: center;
   transition: opacity 200ms ease-in-out;
 }
 
-.modal {
+.modal_name {
   background: $dark-blue;
   color: white;
   max-width: 30rem;
