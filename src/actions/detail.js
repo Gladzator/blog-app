@@ -13,12 +13,13 @@ export const startAddDetail = (detailData = {}) => {
       name = '',
       // picture = '',
     } = detailData;
-    const detail = { name }; //picture
+    let detail = { name }; //picture
 
       return database.ref(`users/${uid}/details`).push(detail).then((ref) => {
+        database.ref(`users/${uid}/details/${ref.key}`).update({id: ref.key})
         dispatch(addDetail({
           id: ref.key,
-          name: detail.name
+          ...detail
         }));
       });
 
@@ -53,7 +54,7 @@ export const startSetDetails = () => {
         childSnapshot.forEach(childSnapshot2 => {
           if(childSnapshot2.key==='name') {
             details.push({
-              id: childSnapshot2.key,
+              id: childSnapshot.key,
               name:childSnapshot2.val()
             })
           }
@@ -64,3 +65,20 @@ export const startSetDetails = () => {
     });
   };
 };
+
+
+export const editDetails = (id, updates) => ({
+  type: 'EDIT_DETAILS',
+  id,
+  updates
+});
+
+export const startEditDetails = ( id, updates ) => {
+  return (dispatch, getState) => {
+    console.log(updates)
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/details/${id}`).update(updates).then(() => {
+      dispatch(editDetails( id, updates ));
+    });
+  };
+}

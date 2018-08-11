@@ -30,13 +30,6 @@ export class NewPostPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   startAddPost: (post) => dispatch(startAddPost(post)),
-  startSetPost: (id) => dispatch(startSetPost(id)),
 });
 
-const mapStatetoProps = (state, props) => {
-  return {
-    posts: selectPosts(state.post)
-  };
-};
-
-export default connect(mapStatetoProps, mapDispatchToProps)(NewPostPage);
+export default connect(undefined, mapDispatchToProps)(NewPostPage);

@@ -34,7 +34,6 @@ class PostListItem extends React.Component {
       </Link>
     );
   }
-
 };
 
 export default PostListItem;

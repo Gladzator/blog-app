@@ -18,12 +18,6 @@ export const startAddPost = (postData = {}) => {
     let post = { uid, title, content , likes};
 
     return database.ref(`users/${uid}/posts`).push(post).then((ref) => {
-
-      console.log(ref.key)
-      post = {
-        uid,
-        ...post
-      };
       dispatch(addPost({
         id: ref.key,
         ...post

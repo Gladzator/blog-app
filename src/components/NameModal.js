@@ -5,7 +5,9 @@ import { startSetDetails } from '../actions/detail';
 import selectDetails from '../selectors/detail';
 import { startAddDetail } from '../actions/detail';  //startAddFile
 import database from '../firebase/firebase';
-import FileField from './FileField';
+import NameForm from './NameForm';
+// import FileField from './FileField';
+
 
 class NameModal extends React.Component {
     constructor(props) {
@@ -13,31 +15,16 @@ class NameModal extends React.Component {
       console.log(props)
       this.state = {
         selectedOption: undefined,
-        name: props.details.name ? props.details.name : '',
         // pictureUrl: null
       }
-      let uname;
-
-    };
-
-    onNameChange = (e) => {
-      const name = e.target.value;
-      this.setState(() => ({ selectedOption: this.props.details.id, name }));
-      this.uname=name
     };
 
 
-    closeModal = (e) => {
-      e.preventDefault();
-
-      if(this.uname !=='') {
-        let name=this.uname;
-        this.props.startAddDetail({name: name});
+    closeModal = (name) => {
+        this.props.startAddDetail(name);
+        this.setState(() => ({ selectedOption: undefined}));
         // this.props.startAddFile({picture: this.state.picture})
-        this.setState(() => ({ selectedOption: undefined, name: name }));
       }
-
-    }
     // displayPicture(event) {
     //   let reader = new FileReader();
     //   let file = event.target.files[0];
@@ -62,24 +49,12 @@ class NameModal extends React.Component {
         shouldCloseOnEsc={false}
       >
         <h3 className="modal__title">Enter your name</h3>
-        <form>
-          <input
-              type="text"
-              placeholder="Enter your name..."
-              className="text-input"
-              autoFocus
-              value={this.state.name}
-              onChange={this.onNameChange}
-            />
-            {/* <input
-              type="file"
-              onChange={(event) => {
-                this.displayPicture(event);
-              }}
-            /> */}
-            <button className="modalButton" onClick={this.closeModal}>Confirm</button>
-        </form>
-    </Modal>
+        <NameForm
+          className="modalButton"
+          onSubmit = {this.closeModal}
+        />
+            {/* <button className="modalButton" onClick={this.closeModal}>Confirm</button> */}
+      </Modal>
   </div>
     )
   }

@@ -1,8 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { startEditDetails } from '../actions/detail';
+import selectDetails from '../selectors/detail';
+
 
 class EditPageName extends React.Component {
   constructor(props){
     super(props);
+    console.log(props);
     this.state = {
       name: props.name ? props.name : '',
     }
@@ -11,8 +16,11 @@ class EditPageName extends React.Component {
     const name = e.target.value;
     this.setState(() => ({ name }))
   }
-  savename_button = () => {
-    console.log(this.props)
+  savename_button = (e) => {
+    e.stopPropagation();
+    const name=this.state.name;
+    this.props.startEditDetails(this.props.detail[0].id,{name:name});
+    this.props.detail[0].name=name;
     this.props.nameChange();
   }
   render() {
@@ -30,9 +38,19 @@ class EditPageName extends React.Component {
         </div>
         <button className="button savename_button" onClick={this.savename_button}>Save</button>
       </div>
-
     )
   }
 }
 
-export default EditPageName;
+const mapDispatchToProps = (dispatch) => ({
+  startEditDetails: (id,detail) => dispatch(startEditDetails(id,detail)),
+});
+
+const mapStatetoProps = (state, props) => {
+  return {
+    auth: state.auth,
+    detail: selectDetails(state.detail)
+  };
+};
+
+export default connect(mapStatetoProps, mapDispatchToProps)(EditPageName);
