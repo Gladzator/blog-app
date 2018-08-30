@@ -22,6 +22,7 @@ export class NewPostPage extends React.Component {
         <h1>Add Post</h1>
         <PostForm
           onSubmit = {this.onSubmit}
+           buttonText="Add Blog"
         />
       </div>
     );

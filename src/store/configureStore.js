@@ -5,6 +5,7 @@ import postReducer from '../reducers/post';
 import detailReducer from '../reducers/detail';
 import likeReducer from '../reducers/like';
 import filtersReducer from '../reducers/filters';
+import allUidReducer from '../reducers/allUid';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,6 +17,7 @@ export default () => {
       detail: detailReducer,
       like: likeReducer,
       filters: filtersReducer,
+      allUid: allUidReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
   );

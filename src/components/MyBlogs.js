@@ -1,17 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PostListItem from './PostListItem'
+import MyPostListItem from './MyPostListItem'
 import selectPosts from '../selectors/posts';
+import { firebase } from '../firebase/firebase';
 
-export class BlogView extends React.Component {
+
+export class MyBlogs extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props)
   }
 
    render () {
      return (
-       <div className="content-container">
-         <div className="list-body">
+      <div className="list-body">
          {
            this.props.posts.length === 0 ? (
             <div className="list-item list-item--message">
@@ -19,12 +21,13 @@ export class BlogView extends React.Component {
             </div>
             ) : (
             this.props.posts.map((post) => {
-              return <PostListItem key={post.id} {...post}/>;
+              if(firebase.auth().currentUser.uid  === post.uid){
+                return <MyPostListItem key={post.id} {...post}/>;
+              }
             })
           )
         }
         </div>
-       </div>
      );
    }
 }
@@ -34,4 +37,4 @@ const mapStatetoProps = (state) => {
     posts: selectPosts(state.post, state.filters)
   };
 };
-export default connect(mapStatetoProps)(BlogView);
+export default connect(mapStatetoProps)(MyBlogs);

@@ -5,7 +5,7 @@ class PostForm extends React.Component {
     super(props);
     this.state = {
       title: props.post ? props.post.title : '',
-      content: props.expense ? props.expense.content: '',
+      content: props.post ? props.post.content: '',
       likes: 0,
       error: ''
     };
@@ -55,12 +55,7 @@ class PostForm extends React.Component {
             value={this.state.content}
             onChange={this.onContentChange}
           />
-          <button
-            className="button"
-            type="submit"
-            >
-            Add Post
-          </button>
+          <button className="button add-edit-btn">{this.props.buttonText}</button>
       </form>
     )
   }

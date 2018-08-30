@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import database from '../firebase/firebase';
 
 class PostListItem extends React.Component {
   constructor(props) {
@@ -11,6 +13,25 @@ class PostListItem extends React.Component {
       likes: props.likes,
     };
   };
+
+  getName = () => {
+    database.ref(`users/${this.props.uid}/details`).once('value').then((snapshot) => {
+      let name;
+      snapshot.forEach(childSnapshot => {
+        childSnapshot.forEach(childSnapshot2 => {
+          if(childSnapshot2.key==='name') {
+              name=childSnapshot2.val()
+          }
+          console.log(name)
+        });
+        return name;
+      })
+    });
+  }
+
+  onLiked = (post) => {
+    post.likes = post.likes + 1;
+  }
 
   render() {
     return(
@@ -25,7 +46,7 @@ class PostListItem extends React.Component {
               :
               <img src="./images/not_liked.png"></img>
             }
-              <p>{this.state.likes}</p>
+              <p>{this.state.likes}({this.getName()})</p>
             </div>
         </div>
         <div className="list-item">
@@ -36,4 +57,4 @@ class PostListItem extends React.Component {
   }
 };
 
-export default PostListItem;
+export default (PostListItem);

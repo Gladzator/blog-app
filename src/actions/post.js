@@ -1,5 +1,6 @@
 import database from '../firebase/firebase';
 
+// ADD_POST
 export const addPost = (post) => ({
   type: "ADD_POST",
   posts: post
@@ -7,7 +8,6 @@ export const addPost = (post) => ({
 
 export const startAddPost = (postData = {}) => {
   return (dispatch, getState) => {
-    console.log('hi')
     const uid = getState().auth.uid;
     const {
       uiid = '',
@@ -22,11 +22,11 @@ export const startAddPost = (postData = {}) => {
         id: ref.key,
         ...post
       }));
-      console.log(post);
     });
   };
 };
 
+// SET_POST
 export const setPost = (posts) => ({
   type: "SET_POST",
   posts
@@ -46,7 +46,6 @@ export const startSetPost = () => {
                 ...childSnapshot3.val()
             });
             }
-
         });
       });
       });
@@ -55,15 +54,33 @@ export const startSetPost = () => {
   };
 };
 
+
+// REMOVE_POST
+export const removePost = ( { id } = {} ) => ({
+  type: 'REMOVE_POST',
+  id
+});
+
+export const startRemovePost = ({ id } = {} ) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/posts/${id}`).remove().then(() => {
+      dispatch(removePost({ id }));
+    });
+  };
+}
+
+// EDIT_POST
 export const editPost = (id, updates) => ({
   type: 'EDIT_POST',
   id,
   updates
 });
 
-export const startEditPost = ( uid, id, updates ) => {
-  console.log(uid);
+export const startEditPost = ( id, likes, updates ) => {
   return (dispatch, getState) => {
+    updates.likes = likes;
+    const uid = getState().auth.uid;
     return database.ref(`users/${uid}/posts/${id}`).update(updates).then(() => {
       dispatch(editPost( id, updates ));
     });

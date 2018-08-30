@@ -59,7 +59,6 @@ export const startSetDetails = () => {
             })
           }
         });
-
     })
       dispatch(setDetails(details));
     });

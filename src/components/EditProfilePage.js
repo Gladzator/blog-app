@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import selectDetails from '../selectors/detail';
 import FileField from './FileField';
 import EditPageName from './EditPageName';
+import MyBlogs from './MyBlogs';
+import PageSubHeader from './PageSubHeader';
 // import Picture from './Picture';
 
 export class EditProfilePage extends React.Component {
@@ -27,7 +29,7 @@ onNameChangeClose = () => {
 }
 render() {
     return (
-      <div className="content-container">
+      <div className="content-container edit_page">
         <div onClick={this.onNameChange} className="edit_name">
           <div className="edit_list-header" >
               <h3 className="edit_list-item__title">Name</h3>
@@ -45,6 +47,10 @@ render() {
               </div>
             }
           </div>
+        </div>
+        <div className="edit_blogs_list">
+          <PageSubHeader hideAddBtn='true'/>
+          <MyBlogs />
         </div>
       </div>
     );

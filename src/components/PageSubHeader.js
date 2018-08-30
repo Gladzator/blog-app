@@ -7,7 +7,9 @@ import selectPosts from '../selectors/posts';
 //PageListFilters
 
 export class PageSubHeader extends React.Component {
-
+  constructor(props) {
+    super(props);
+  }
   onTextChange = (e) => {
     this.props.setTextFilter(e.target.value);
   };
@@ -45,7 +47,7 @@ export class PageSubHeader extends React.Component {
                 <option value="Likes">Likes</option>
               </select>
             </div>
-            <Link className="input-group__item page_sub--button" to="/create"><img title="Add Post" src="/images/add_icon.png" /></Link>
+            {this.props.hideAddBtn !== 'true' && <Link className="input-group__item page_sub--button" to="/create"><img title="Add Post" src="/images/add_icon.png" /></Link>}
         </div>
       </div>
     );

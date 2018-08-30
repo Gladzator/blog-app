@@ -61,6 +61,21 @@ export const startEditLike = ( like, updates ) => {
   };
 }
 
+// REMOVE_LIKE5
+export const removeLike = ( { id } = {} ) => ({
+  type: 'REMOVE_LIKE',
+  id
+});
+
+export const startRemoveLike = ( uid, id = '') => {
+  return (dispatch, getState) => {
+    console.log(uid,id);
+    return database.ref(`users/${uid}/liked/${id}`).remove().then(() => {
+      dispatch(removeLike({ id }));
+    });
+  };
+}
+
 export const editLikesKey = (like, updates) => ({
   type: 'EDIT_LIKES_KEY',
   like,

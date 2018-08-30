@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import { startSetPost } from './actions/post';
+import { getAllUid } from './actions/allUid';
 import { startSetDetails } from './actions/detail';
 import { startSetLikeKey } from './actions/like';
 import { login, logout } from './actions/auth';
@@ -32,13 +33,18 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user.uid));
-
       store.dispatch(startSetDetails()).then(() => {
       renderApp();
-      if (history.location.pathname === '/') {
-        history.push('/dashboard');
-      }
     });
+    if (history.location.pathname === '/') {
+      history.push('/dashboard');
+    }
+    store.dispatch(getAllUid()).then(() => {
+    renderApp();
+    if (history.location.pathname === '/') {
+      history.push('/dashboard');
+    }
+  });
     store.dispatch(startSetLikeKey()).then(() => {
     renderApp();
     if (history.location.pathname === '/') {
