@@ -11,11 +11,12 @@ class PostListItem extends React.Component {
       title: props.title,
       content: props.content,
       likes: props.likes,
+      uid: props.uid
     };
   };
 
   getName = () => {
-    database.ref(`users/${this.props.uid}/details`).once('value').then((snapshot) => {
+    database.ref(`users/${this.state.uid}/details`).once('value').then((snapshot) => {
       let name;
       snapshot.forEach(childSnapshot => {
         childSnapshot.forEach(childSnapshot2 => {
@@ -23,8 +24,8 @@ class PostListItem extends React.Component {
               name=childSnapshot2.val()
           }
           console.log(name)
+          return name;
         });
-        return name;
       })
     });
   }
