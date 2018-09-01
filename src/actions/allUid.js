@@ -11,9 +11,19 @@ export const getAllUid = () => {
     return database.ref(`users`).once('value').then((snapshot) => {
       const uid = [];
       snapshot.forEach((childSnapshot) => {
-        uid.push(childSnapshot.key);
+        childSnapshot.forEach((childSnapshot2) => {
+          childSnapshot2.forEach((childSnapshot3) => {
+            childSnapshot3.forEach((childSnapshot4) => {
+              if(childSnapshot2.key==="details"){
+                uid.push({
+                  id:childSnapshot.key,
+                  ...childSnapshot3.val()
+                });
+              }
+            });
+          });
+        });
       });
-      console.log(uid);
       dispatch(allUid(uid));
     });
   }

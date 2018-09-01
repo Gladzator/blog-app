@@ -15,21 +15,17 @@ class PostListItem extends React.Component {
     };
   };
 
-  getName = () => {
-    database.ref(`users/${this.state.uid}/details`).once('value').then((snapshot) => {
-      let name;
-      snapshot.forEach(childSnapshot => {
-        childSnapshot.forEach(childSnapshot2 => {
-          if(childSnapshot2.key==='name') {
-              name=childSnapshot2.val()
-          }
-          console.log(name)
-          return name;
-        });
-      })
-    });
-  }
 
+
+  getName = () => {
+    let uName;
+    this.props.uid_name.filter((name) => {
+      if(name.id === this.state.uid) {
+        uName= name.name;
+      };
+    });
+    return uName;
+  };
   onLiked = (post) => {
     post.likes = post.likes + 1;
   }
@@ -58,4 +54,10 @@ class PostListItem extends React.Component {
   }
 };
 
-export default (PostListItem);
+const mapStatetoProps = (state) => {
+  return {
+    uid_name: state.allUid[0]
+  };
+};
+
+export default connect(mapStatetoProps)(PostListItem);

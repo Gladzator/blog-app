@@ -20,8 +20,7 @@ class EditPageName extends React.Component {
     e.stopPropagation();
     const name=this.state.name;
     this.props.startEditDetails(this.props.detail[0].id,{name:name});
-    this.props.detail[0].name=name;
-    this.props.nameChange();
+    this.props.nameChange(name);
   }
   render() {
     return (

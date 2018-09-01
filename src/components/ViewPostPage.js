@@ -8,7 +8,7 @@ import selectLike from '../selectors/like';
 export class ViewPostPage extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    console.log(props.posts);
     this.state = {
       likeid: props.likes === undefined ? '' : props.likes.id,
       like: props.likes === undefined ?  0 : props.likes.likes,
@@ -53,7 +53,7 @@ export class ViewPostPage extends React.Component {
       this.props.posts.likes = this.props.posts.likes + 1;
 
       this.props.startEditLike(this.props.posts.id, {likes:1});
-      this.props.startEditPost(this.props.posts.id, this.props.posts.likes, this.props.posts)
+      this.props.startEditPost(this.props.posts.uid,this.props.posts.id, this.props.posts.likes, this.props.posts)
 
 
     }else if(firebase.auth().currentUser.uid  === this.props.posts.uid){
@@ -65,7 +65,7 @@ export class ViewPostPage extends React.Component {
           this.props.posts.likes = this.props.posts.likes + 1;
 
           this.props.startEditLikesKey(this.props.posts.id,{likes:1})
-          this.props.startEditPost(this.props.posts.id, this.props.posts.likes, this.props.posts)
+          this.props.startEditPost(this.props.posts.uid,this.props.posts.id, this.props.posts.likes, this.props.posts)
 
           this.props.likes.likes = 1;
         } else {
@@ -76,7 +76,7 @@ export class ViewPostPage extends React.Component {
           this.props.posts.likes = this.props.posts.likes - 1;
 
           this.props.startEditLikesKey(this.props.posts.id,{likes:0})
-          this.props.startEditPost(this.props.posts.id, this.props.posts.likes, this.props.posts)
+          this.props.startEditPost(this.props.posts.uid,this.props.posts.id, this.props.posts.likes, this.props.posts)
 
           this.props.likes.likes = 0;
 
@@ -90,7 +90,7 @@ export class ViewPostPage extends React.Component {
           this.props.posts.likes = this.props.posts.likes + 1;
 
           this.props.startEditLikesKey(this.props.posts.id,{likes:1})
-          this.props.startEditPost(this.props.posts.id, this.props.posts.likes, this.props.posts)
+          this.props.startEditPost(this.props.posts.uid,this.props.posts.id, this.props.posts.likes, this.props.posts)
 
           this.props.likes.likes = 1;
 
@@ -102,7 +102,7 @@ export class ViewPostPage extends React.Component {
           this.props.posts.likes = this.props.posts.likes - 1;
 
           this.props.startEditLikesKey(this.props.posts.id,{likes:0})
-          this.props.startEditPost(this.props.posts.id, this.props.posts.likes, this.props.posts)
+          this.props.startEditPost(this.props.posts.uid,this.props.posts.id, this.props.posts.likes, this.props.posts)
 
           this.props.likes.likes = 0;
         }
@@ -114,7 +114,7 @@ export class ViewPostPage extends React.Component {
 
 
 const mapDispatchToProps = (dispatch) => ({
-  startEditPost: (id, likes, posts) => dispatch(startEditPost(id, likes, posts)),
+  startEditPost: (uid,id, likes, posts) => dispatch(startEditPost(uid,id, likes, posts)),
   startEditLike: (id,likedPost) => dispatch(startEditLike(id,likedPost)),
   startEditLikesKey: (id,likedPost) => dispatch(startEditLikesKey(id,likedPost)),
 });

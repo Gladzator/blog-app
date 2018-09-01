@@ -77,12 +77,14 @@ export const editPost = (id, updates) => ({
   updates
 });
 
-export const startEditPost = ( id, likes, updates ) => {
+export const startEditPost = ( uid,id, likes, updates ) => {
   return (dispatch, getState) => {
     updates.likes = likes;
-    const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/posts/${id}`).update(updates).then(() => {
-      dispatch(editPost( id, updates ));
-    });
+    console.log(uid);
+    if(uid != undefined){
+      return database.ref(`users/${uid}/posts/${id}`).update(updates).then(() => {
+        dispatch(editPost( id, updates ));
+      });
+    }
   };
 }

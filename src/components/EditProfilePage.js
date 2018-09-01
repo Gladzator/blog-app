@@ -22,10 +22,11 @@ onNameChange = () => {
   }));
 }
 
-onNameChangeClose = () => {
+onNameChangeClose = (name) => {
   this.setState(() => ({
     nameChange: false
   }));
+  this.props.detail[0].name=name;
 }
 render() {
     return (

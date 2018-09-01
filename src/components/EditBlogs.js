@@ -5,6 +5,7 @@ import RemoveModal from './RemoveModal';
 import { startEditPost, startRemovePost } from '../actions/post';
 import { startRemoveLike } from '../actions/like';
 
+
 export class EditBlogs extends React.Component {
   constructor(props){
     super(props);
@@ -13,7 +14,7 @@ export class EditBlogs extends React.Component {
      selectedOption: undefined
    };
    onSubmit = (post) => {
-      this.props.startEditPost(this.props.post.id,this.props.post.likes, post);
+      this.props.startEditPost(this.props.post.uid,this.props.post.id,this.props.post.likes, post);
       this.props.history.push('/');
   };
   onRemove = () => {
@@ -61,7 +62,7 @@ export class EditBlogs extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  startEditPost: (id, likes, post) => dispatch(startEditPost(id, likes, post)),
+  startEditPost: (uid,id, likes, post) => dispatch(startEditPost(uid,id, likes, post)),
   startRemovePost: (post) => dispatch(startRemovePost(post)),
   startRemoveLike: (uid, id) => dispatch(startRemoveLike(uid, id)),
 });

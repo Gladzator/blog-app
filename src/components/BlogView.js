@@ -6,6 +6,7 @@ import selectPosts from '../selectors/posts';
 export class BlogView extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props.posts)
   }
 
    render () {

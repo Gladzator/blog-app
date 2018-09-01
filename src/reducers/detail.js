@@ -1,8 +1,6 @@
 const postDefaultState = [];
 
 export default (state = postDefaultState, action) => {
-
-    console.log(action.details);
   switch (action.type) {
     case 'ADD_DETAILS':
       return [
