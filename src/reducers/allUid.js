@@ -7,6 +7,17 @@ export default (state = postDefaultState, action) => {
         ...state,
         action.uid
       ];
+    case 'EDIT_ALL_UID' :
+      return state.map((allUid) => {
+        if(allUid.id === action.uid) {
+          return {
+            ...allUid,
+            ...action.updates
+          }
+        } else {
+          return allUid;
+        }
+      })
     default:
       return state;
   }

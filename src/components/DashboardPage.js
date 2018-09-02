@@ -15,7 +15,6 @@ class DashboardPage extends React.Component    {
     return(
       <div>
         {this.props.details.length === 0 && <NameModal />}
-
         <PageSubHeader />
         <BlogView />
       </div>
@@ -25,10 +24,11 @@ class DashboardPage extends React.Component    {
 }
 
 const mapStatetoProps = (state) => {
-  console.log(state);
+  console.log(state.post);
   return {
     auth: state.auth,
-    details: (state.detail)
+    details: state.detail,
+    posts: state.post
   };
 };
 

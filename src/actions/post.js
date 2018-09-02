@@ -80,7 +80,6 @@ export const editPost = (id, updates) => ({
 export const startEditPost = ( uid,id, likes, updates ) => {
   return (dispatch, getState) => {
     updates.likes = likes;
-    console.log(uid);
     if(uid != undefined){
       return database.ref(`users/${uid}/posts/${id}`).update(updates).then(() => {
         dispatch(editPost( id, updates ));

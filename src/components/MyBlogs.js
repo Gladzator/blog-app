@@ -8,7 +8,7 @@ import { firebase } from '../firebase/firebase';
 export class MyBlogs extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
+    console.log(props.posts)
   }
 
    render () {
@@ -33,6 +33,7 @@ export class MyBlogs extends React.Component {
 }
 
 const mapStatetoProps = (state) => {
+  console.log(state);
   return {
     posts: selectPosts(state.post, state.filters)
   };

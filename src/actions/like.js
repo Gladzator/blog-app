@@ -5,7 +5,7 @@ export const addLike = (like) => ({
   likes: like
 })
 
-export const startAddLike = (likeData = {}) => {
+export const startAddLike = (id, likeData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     const {
@@ -14,11 +14,12 @@ export const startAddLike = (likeData = {}) => {
     } = likeData;
     const like = { likeid, likes };
 
-    return database.ref(`users/${uid}/likes`).push(like).then((ref) => {
+    return database.ref(`users/${uid}/liked/${id}`).set({
+        likes
+    }).then(() => {
       dispatch(addLike({
-        id: ref.key,
-        likeid: like.likeid,
-        ...like
+        id,
+        likes
       }));
     });
   };
@@ -46,20 +47,6 @@ export const startSetLikeKey = () => {
   };
 };
 
-export const editLike = (like, updates) => ({
-  type: 'EDIT_LIKE',
-  like,
-  updates
-});
-
-export const startEditLike = ( like, updates ) => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/liked/${like}`).update(updates).then(() => {
-      dispatch(editLike( like, updates ));
-    });
-  };
-}
 
 // REMOVE_LIKE5
 export const removeLike = ( { id } = {} ) => ({
@@ -86,7 +73,7 @@ export const startEditLikesKey = ( like, updates ) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database.ref(`users/${uid}/liked/${like}`).update(updates).then(() => {
-      dispatch(editLike( like, updates ));
+      dispatch(editLikesKey( like, updates ));
     });
   };
 }

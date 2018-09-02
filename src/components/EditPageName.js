@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { startEditDetails } from '../actions/detail';
 import selectDetails from '../selectors/detail';
+import {editAllUid} from '../actions/allUid';
 
 
 class EditPageName extends React.Component {
@@ -17,9 +18,11 @@ class EditPageName extends React.Component {
     this.setState(() => ({ name }))
   }
   savename_button = (e) => {
+    console.log(this.props);
     e.stopPropagation();
     const name=this.state.name;
     this.props.startEditDetails(this.props.detail[0].id,{name:name});
+    this.props.editAllUid({name:name})
     this.props.nameChange(name);
   }
   render() {
@@ -43,12 +46,15 @@ class EditPageName extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   startEditDetails: (id,detail) => dispatch(startEditDetails(id,detail)),
+  editAllUid: (name) => dispatch(editAllUid(name))
 });
 
 const mapStatetoProps = (state, props) => {
+  console.log(state)
   return {
     auth: state.auth,
-    detail: selectDetails(state.detail)
+    detail: selectDetails(state.detail),
+    uid_name: state.allUid[0]
   };
 };
 

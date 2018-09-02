@@ -15,7 +15,7 @@ export class EditBlogs extends React.Component {
    };
    onSubmit = (post) => {
       this.props.startEditPost(this.props.post.uid,this.props.post.id,this.props.post.likes, post);
-      this.props.history.push('/');
+      this.props.history.push(`/profile/${this.props.post.uid}`);
   };
   onRemove = () => {
     this.setState(() => ({
@@ -25,7 +25,7 @@ export class EditBlogs extends React.Component {
   removeBlog = (expense) => {
     this.props.startRemovePost({id: this.props.post.id});
     this.props.allUid.map((uid) => {
-      this.props.startRemoveLike(uid, this.props.post.id);
+      this.props.startRemoveLike(uid.id, this.props.post.id);
     });
     this.props.history.push('/');
   };
@@ -68,7 +68,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStatetoProps = (state, props) => {
-  console.log(state)
+  console.log(state);
   return {
     post: state.post.find((post) => post.id === props.match.params.id),
     allUid: state.allUid[0]

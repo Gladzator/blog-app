@@ -10,7 +10,6 @@ import PageSubHeader from './PageSubHeader';
 export class EditProfilePage extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       nameChange: false
     }

@@ -56,7 +56,7 @@ class PostListItem extends React.Component {
 
 const mapStatetoProps = (state) => {
   return {
-    uid_name: state.allUid[0]
+    uid_name: state.allUid
   };
 };
 

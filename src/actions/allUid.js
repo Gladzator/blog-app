@@ -9,22 +9,38 @@ export const allUid = (uid) => ({
 export const getAllUid = () => {
   return (dispatch) => {
     return database.ref(`users`).once('value').then((snapshot) => {
-      const uid = [];
       snapshot.forEach((childSnapshot) => {
         childSnapshot.forEach((childSnapshot2) => {
           childSnapshot2.forEach((childSnapshot3) => {
             childSnapshot3.forEach((childSnapshot4) => {
               if(childSnapshot2.key==="details"){
-                uid.push({
+                dispatch(allUid({
                   id:childSnapshot.key,
                   ...childSnapshot3.val()
-                });
+                }));
               }
             });
           });
         });
       });
-      dispatch(allUid(uid));
     });
+  }
+}
+
+// Edit allUid
+export const editallUid = (uid,updates) => ({
+  type: 'EDIT_ALL_UID',
+  uid,
+  updates
+})
+
+export const editAllUid = (name) => {
+  return (dispatch, getState) => {
+    const currentUser = getState().auth.uid;
+    console.log(currentUser)
+    return database.ref(`users`).update(name).then(() => {
+        dispatch(editallUid(currentUser,name));
+      }
+    );
   }
 }
