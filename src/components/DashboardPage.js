@@ -8,7 +8,6 @@ import Picture from './Picture';
 class DashboardPage extends React.Component    {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   render() {
@@ -24,7 +23,6 @@ class DashboardPage extends React.Component    {
 }
 
 const mapStatetoProps = (state) => {
-  console.log(state.post);
   return {
     auth: state.auth,
     details: state.detail,

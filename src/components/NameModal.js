@@ -12,7 +12,6 @@ import NameForm from './NameForm';
 class NameModal extends React.Component {
     constructor(props) {
       super(props);
-      console.log(props)
       this.state = {
         selectedOption: undefined,
         // pictureUrl: null
