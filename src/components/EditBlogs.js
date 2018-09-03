@@ -70,7 +70,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStatetoProps = (state, props) => {
-  console.log(state);
   return {
     post: state.post.find((post) => post.id === props.match.params.id),
     allUid: state.allUid

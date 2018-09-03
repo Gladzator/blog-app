@@ -19,11 +19,11 @@ class Header extends React.Component {
             <Link className="header__title" to="/dashboard">
               <h1>Blogist</h1>
             </Link>
-            <button
+            <Link to="/"
               className="button button--link"
               onClick={this.props.startLogout}
             >
-              Logout</button>
+              Logout</Link>
               {/* <DetailsDropDown /> */}
               <Link to={`/profile/${firebase.auth().currentUser.uid}`}>
                 <img onClick={this.onUser_Img_Click} src="/images/user.png"></img>

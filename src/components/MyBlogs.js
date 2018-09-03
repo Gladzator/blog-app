@@ -8,7 +8,7 @@ import { firebase } from '../firebase/firebase';
 export class MyBlogs extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.posts)
+    console.log(props)
   }
 
    render () {

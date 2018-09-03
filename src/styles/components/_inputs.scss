@@ -4,6 +4,9 @@
   font-size: $font-size-large;
   font-weight: 300;
   padding: $s-size;
+  @media (max-width: 21rem) {
+    max-width: 20rem;
+  }
 }
 
 // .button_input_img {

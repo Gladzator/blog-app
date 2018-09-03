@@ -46,7 +46,6 @@ export class ViewPostPage extends React.Component {
     console.log(this.props);
     const id=this.props.posts.id;
     if(this.state.likeid === '') {
-      console.log('1');
       const likeid = this.props.posts.id;
       const likes = this.props.posts.likes + 1;
 
@@ -59,7 +58,6 @@ export class ViewPostPage extends React.Component {
 
     }else if(firebase.auth().currentUser.uid  === this.props.posts.uid){
       if(this.state.like === 0) {
-        console.log('2');
           const likes = this.props.posts.likes + 1;
 
           const like = 1;
@@ -69,7 +67,6 @@ export class ViewPostPage extends React.Component {
           this.props.startEditPost(this.props.posts.uid,this.props.posts.id, likes, this.props.posts)
 
         } else {
-          console.log('3');
           const likes = this.props.posts.likes - 1;
 
           const like = 0;
@@ -80,7 +77,6 @@ export class ViewPostPage extends React.Component {
 
         }
       } else {
-        console.log('4');
         if(this.state.like === 0) {
           const likes = this.props.posts.likes + 1;
 
@@ -91,7 +87,6 @@ export class ViewPostPage extends React.Component {
           this.props.startEditPost(this.props.posts.uid,this.props.posts.id, likes, this.props.posts)
 
         } else {
-          console.log('5');
           const likes = this.props.posts.likes - 1;
 
           const like = 0;

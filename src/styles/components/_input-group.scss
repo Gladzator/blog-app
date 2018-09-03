@@ -3,8 +3,12 @@
   flex-direction: column;
   position: relative;
   margin-bottom: $m-size;
-  @media (min-width: $desktop-breakpoint) {
+  @media (min-width: $desktop-breakpoint + 1) {
     flex-direction: row;
+    margin: $m-size 0 $l-size 0;
+  }
+  @media (max-width: $desktop-breakpoint) {
+    flex-direction: column;
     margin: $m-size 0 $l-size 0;
   }
 }
