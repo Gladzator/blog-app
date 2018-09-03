@@ -1,7 +1,6 @@
 const postDefaultState = [];
 
 export default (state = postDefaultState, action) => {
-
   switch (action.type) {
     case 'ADD_LIKE':
       return [
@@ -21,7 +20,7 @@ export default (state = postDefaultState, action) => {
         })
         case 'EDIT_LIKES_KEY' :
           return state.map((like) => {
-            if(like.id === action.id) {
+            if(like.id === action.like) {
               return {
                 ...like,
                 ...action.updates

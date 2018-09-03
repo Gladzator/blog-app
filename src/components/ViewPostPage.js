@@ -8,10 +8,9 @@ import selectLike from '../selectors/like';
 export class ViewPostPage extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       likeid: props.likes === undefined ? '' : props.likes.id,
-      like: props.likes === undefined ?  0 : this.props.likes.likes,
+      like: props.likes === undefined ?  0 : props.likes.likes,
       likes: props.posts.likes ? props.posts.likes : 0,
     };
   }
@@ -43,7 +42,6 @@ export class ViewPostPage extends React.Component {
 
 
   onLikeChange = () => {
-    console.log(this.props);
     const id=this.props.posts.id;
     if(this.state.likeid === '') {
       const likeid = this.props.posts.id;
@@ -91,7 +89,6 @@ export class ViewPostPage extends React.Component {
 
           const like = 0;
           this.setState(() => ({ like,likes }));
-          this.props.posts.likes = this.props.posts.likes - 1;
 
           this.props.startEditLikesKey(this.props.posts.id,{likes:0})
           this.props.startEditPost(this.props.posts.uid,this.props.posts.id, likes, this.props.posts)

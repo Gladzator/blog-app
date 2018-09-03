@@ -37,7 +37,6 @@ export const editallUid = (uid,updates) => ({
 export const editAllUid = (name) => {
   return (dispatch, getState) => {
     const currentUser = getState().auth.uid;
-    console.log(currentUser)
       dispatch(editallUid(currentUser,name));
   }
 }

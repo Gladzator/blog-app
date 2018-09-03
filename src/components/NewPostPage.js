@@ -9,7 +9,6 @@ import { firebase } from '../firebase/firebase';
 export class NewPostPage extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
   }
   onSubmit = (post) => {
     this.props.startAddPost(post);
@@ -19,7 +18,7 @@ export class NewPostPage extends React.Component {
   render() {
     return (
       <div className="content-container">
-        <h1>Add Post</h1>
+        <h1>Add Blog</h1>
         <PostForm
           onSubmit = {this.onSubmit}
            buttonText="Add Blog"

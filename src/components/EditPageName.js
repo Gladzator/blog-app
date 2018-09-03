@@ -8,7 +8,6 @@ import {editAllUid} from '../actions/allUid';
 class EditPageName extends React.Component {
   constructor(props){
     super(props);
-    console.log(props);
     this.state = {
       name: props.name ? props.name : '',
     }
@@ -18,7 +17,6 @@ class EditPageName extends React.Component {
     this.setState(() => ({ name }))
   }
   savename_button = (e) => {
-    console.log(this.props);
     e.stopPropagation();
     const name=this.state.name;
     this.props.startEditDetails(this.props.detail[0].id,{name:name});
@@ -50,7 +48,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStatetoProps = (state, props) => {
-  console.log(state)
   return {
     auth: state.auth,
     detail: selectDetails(state.detail),
