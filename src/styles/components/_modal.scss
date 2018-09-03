@@ -15,6 +15,7 @@
 
 .modal__title {
   background: $dark-blue;
+  cursor: default;
 }
 
 .modal__body {
@@ -35,4 +36,11 @@
   margin: 1rem;
   padding: $s-size;
   text-decoration: none;
+}
+.remove_modal__body {
+  background: $dark-blue;
+}
+.remove_modal__title{
+  background: $dark-blue;
+  cursor: default;
 }

@@ -15,7 +15,9 @@ export class EditBlogs extends React.Component {
    };
    onSubmit = (post) => {
       this.props.startEditPost(this.props.post.uid,this.props.post.id,this.props.post.likes, post);
-      this.props.history.push(`/profile/${this.props.post.uid}`);
+      setTimeout(() => {
+        this.props.history.push(`/profile/${this.props.post.uid}`);
+      }, 1000)
   };
   onRemove = () => {
     this.setState(() => ({
@@ -71,7 +73,7 @@ const mapStatetoProps = (state, props) => {
   console.log(state);
   return {
     post: state.post.find((post) => post.id === props.match.params.id),
-    allUid: state.allUid[0]
+    allUid: state.allUid
   };
 };
 

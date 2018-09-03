@@ -38,9 +38,6 @@ export const editAllUid = (name) => {
   return (dispatch, getState) => {
     const currentUser = getState().auth.uid;
     console.log(currentUser)
-    return database.ref(`users`).update(name).then(() => {
-        dispatch(editallUid(currentUser,name));
-      }
-    );
+      dispatch(editallUid(currentUser,name));
   }
 }

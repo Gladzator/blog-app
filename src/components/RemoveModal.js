@@ -11,10 +11,10 @@ class RemoveModal extends React.Component {
         isOpen={!!this.props.selectedOption}
         onRequestClose={this.closeModal}
         contentLabel="Are You Sure?"
-        className="modal"
+        className="modal_name"
       >
-        <h3 className="modal__title">Are you sure?</h3>
-        <div className="modal__body">
+        <h3 className="remove_modal__title">Are you sure?</h3>
+        <div className="remove_modal__body">
           <button className="modalButton" onClick={this.props.removeBlog}>I'm Sure</button>
           <button className="modalButton" onClick={this.props.closeModal}>Go Back</button>
         </div>

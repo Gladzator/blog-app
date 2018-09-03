@@ -23,16 +23,17 @@ export class ViewPostPage extends React.Component {
         <div className="view-page__title">
             <h1>{this.props.posts.title}</h1>
         </div>
+        <div>Share the blog: <u>https://blogist-by-yash.herokuapp.com/view/{this.props.posts.id}</u></div>
         <div className="view-page__content">
           <h3>{this.props.posts.content}</h3>
         </div>
         <div className="list-item__likes">
         {
-          this.state.like === 1
+          (this.state.like === 1)
           ?
-          <img onClick={this.onLikeChange} src="/images/liked.png"></img>
+          firebase.auth().currentUser && <img onClick={this.onLikeChange} src="/images/liked.png"></img>
           :
-          <img onClick={this.onLikeChange} src="/images/not_liked.png"></img>
+          firebase.auth().currentUser && <img onClick={this.onLikeChange} src="/images/not_liked.png"></img>
         }
         </div>
 
